@@ -1,7 +1,13 @@
 ---
+import {getCollection} from "astro:content"
+
 import Layout from "../layouts/Layout.astro"
 import Main from "../components/Main.astro"
+import Member from "../components/Member.astro"
 import H1 from "../components/H1.astro"
+import H2 from "../components/H2.astro"
+
+const allMembers = await getCollection("members")
 ---
 
 <Layout>
@@ -13,6 +19,12 @@ import H1 from "../components/H1.astro"
         </p>
 
         <hr class="w-full border border-teal-900 mb-16 max-sm:mb-10" />
+
+        <H2 text="Let out team be your team"/>
+
+        <div class="grid grid-cols-3 gap-x-6 gap-y-14 mb-16 mt-12 max-lg:grid-cols-1">
+            {allMembers.map(member => <Member member={member} />)}
+        </div>
 
     </Main>
 </Layout>
