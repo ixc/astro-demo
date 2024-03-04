@@ -14,6 +14,9 @@ const allMembers = await getCollection("member")
     <Main>
         <H1 text="Chase Waterfalls" />
 
+        <a href="space/space-travel/">Space Travel</a>
+        <a href="space/daily-picture/">Daily Picture</a>
+
         <p class="text-zinc-900 text-2xl mb-24 max-sm:mb-14">
             The Interaction Consortium Proposal... Ready to have your mind blown?
         </p>
@@ -25,6 +28,5 @@ const allMembers = await getCollection("member")
         <div class="grid grid-cols-3 gap-x-6 gap-y-14 mb-16 mt-12 max-lg:grid-cols-1">
             {allMembers.map(member => <Member member={member} />)}
         </div>
-
     </Main>
 </Layout>
