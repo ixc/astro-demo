@@ -1,11 +1,12 @@
 <script>
+    const PUBLIC_NASA_API_KEY = import.meta.env.PUBLIC_NASA_API_KEY;
+
     import { onMount } from 'svelte';
 
     let picOfTheDayUrl;
   
     onMount(() => {
-        const currentDate = new Date();
-        fetchImageOfTheDay(currentDate)
+        fetchImageOfTheDay()
     });
 
     const formatDate = (date) => {
@@ -16,10 +17,12 @@
         return formattedDate
     }
 
-    const fetchImageOfTheDay = async (date) => {
+    const fetchImageOfTheDay = async () => {
         try {
-            const formattedDate = formatDate(date);
-            const response = await fetch(`https://api.nasa.gov/planetary/apod?date=${formattedDate}&api_key=RrQumXz0DSkBKasFH1mz7DVFhuwOe9rRPOYXHE1G`);
+            const currentDate = new Date();
+            const formattedDate = formatDate(currentDate);
+            const URL = `https://api.nasa.gov/planetary/apod?date=${formattedDate}&api_key=${PUBLIC_NASA_API_KEY}`
+            const response = await fetch(URL);
             const data = await response.json();
             // Assuming the API response provides distances for each planet
             if ( data.media_type === 'image' ){
